@@ -2,6 +2,7 @@ package org.ltlamontagne;
 
 
 import org.ltlamontagne.repository.PlayerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,8 @@ import java.util.List;
 @RestController
 public class PlayerController {
 
-
+    @Autowired
     private PlayerRepository repository;
-
-    public PlayerController(PlayerRepository repository) {
-        this.repository = repository;
-    }
 
     @GetMapping("/players")
     public List<Player> getAllPlayers(){
@@ -28,7 +25,4 @@ public class PlayerController {
         repository.save(player);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
-
 }
